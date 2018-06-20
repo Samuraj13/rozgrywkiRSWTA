@@ -82,11 +82,7 @@
     <Content Include="rozgrywki\core\__init__.pyc" />
     <Content Include="rozgrywki\core\__pycache__\__init__.cpython-36.pyc" />
     <Content Include="rozgrywki\games\.models.py.swp" />
-    <Content Include="rozgrywki\games\admin.pyc" />
-    <Content Include="rozgrywki\games\models.pyc" />
-    <Content Include="rozgrywki\games\__init__.pyc" />
     <Content Include="rozgrywki\games\__pycache__\__init__.cpython-36.pyc" />
-    <Content Include="rozgrywki\settings.pyc" />
     <Content Include="rozgrywki\templates\account_activation_email.html" />
     <Content Include="rozgrywki\templates\account_activation_invalid.html" />
     <Content Include="rozgrywki\templates\account_activation_sent.html" />
@@ -113,7 +109,6 @@
     <Content Include="rozgrywki\templates\signup.html" />
     <Content Include="rozgrywki\templates\team_list.html" />
     <Content Include="rozgrywki\templates\user_list.html" />
-    <Content Include="rozgrywki\__init__.pyc" />
     <Content Include="rozgrywki\__pycache__\settings.cpython-36.pyc" />
     <Content Include="rozgrywki\__pycache__\__init__.cpython-36.pyc" />
   </ItemGroup>

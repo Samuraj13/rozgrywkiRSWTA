@@ -114,10 +114,17 @@ class BracketViewSet(View):
         try:
             event = Event.objects.get(id=pk)
             teams = TeamEvent.objects.filter(event_id=event.id)
+            players = Player.objects.annotate(gole=Count('goal')).order_by('-gole')
+            events = Player.objects.all()
+            gole = Team.objects.all().annotate(ilosc=Sum('teamscore__score', distinct=True)).annotate(mecze=Count('teamscore__team_id')).annotate(punkty=Sum('event_team')).order_by('-ilosc')
+
             return render(request, 'event_bracket.html',
                           context={
                               'event': event,
-                              'teams': teams
+                              'teams': teams,
+                              'events': events,
+                              'players': players,
+                              'gole': gole,
                           })
         except Event.DoesNotExist:
             return Http404

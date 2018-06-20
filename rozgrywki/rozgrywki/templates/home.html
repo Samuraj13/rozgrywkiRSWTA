@@ -39,27 +39,7 @@
                     {% endfor %}
                 </table>
             </div>
-            <div class="col-lg-3" style="margin-top: 10px">
-                <h3>Statystyki drużyn</h3>
-                <table class="table">
-                    <thead>
-                    <tr>
-                        <th>Nr</th>
-                        <th>Nazwa</th>
-                        <th>Gole</th>
-                    </tr>
-                    </thead>
-                    {% for gol in gole %}
-                        <tbody>
-                        <tr>
-                            <td>{{ forloop.counter }}</td>
-                            <td>{{ gol.team_name }}</td>
-                            <td>{{ gol.ilosc }}</td>
-                        </tr>
-                        </tbody>
-                    {% endfor %}
-                </table>
-            </div>
+            
         </div>
 
     </div>
