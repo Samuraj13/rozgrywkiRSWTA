@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <h1 align="center">Wyszukiwanie</h1>
+    <p align="center">
+        <a href="{% url 'user_search' %}" class="btn btn-info" role="button">Wyszukaj Uzytkownika</a>
+     <a href="{% url 'team_search' %}" class="btn btn-info" role="button">Wyszukaj Druzyne</a>
+    <a href="{% url 'event_search' %}" class="btn btn-info" role="button">Wyszukaj Lige</a>
+    </p>
+    </div>
+
+
+{% endblock %}

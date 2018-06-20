@@ -1,0 +1,189 @@
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <Name>rozgrywki</Name>
+    <RootNamespace>rozgrywki</RootNamespace>
+    <InterpreterId>MSBuild|env|$(MSBuildProjectFullPath)</InterpreterId>
+  </PropertyGroup>
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>a3a1f14a-46ed-4db5-be2e-1974b7fe50c6</ProjectGuid>
+    <ProjectHome>.</ProjectHome>
+    <ProjectTypeGuids>{5F0BE9CA-D677-4A4D-8806-6076C0FAAD37};{349c5851-65df-11da-9384-00065b846f21};{888888a0-9f3d-457c-b088-3a5042f75d52}</ProjectTypeGuids>
+    <StartupFile>manage.py</StartupFile>
+    <SearchPath>
+    </SearchPath>
+    <WorkingDirectory>.</WorkingDirectory>
+    <LaunchProvider>Django launcher</LaunchProvider>
+    <DjangoSettingsModule>rozgrywki.settings</DjangoSettingsModule>
+    <WebBrowserUrl>http://localhost</WebBrowserUrl>
+    <OutputPath>.</OutputPath>
+    <SuppressCollectPythonCloudServiceFiles>true</SuppressCollectPythonCloudServiceFiles>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <DebugSymbols>true</DebugSymbols>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <DebugSymbols>true</DebugSymbols>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="manage.py" />
+    <Compile Include="rozgrywki\core\apps.py" />
+    <Compile Include="rozgrywki\core\filters.py" />
+    <Compile Include="rozgrywki\core\forms.py" />
+    <Compile Include="rozgrywki\core\migrations\0001_initial.py" />
+    <Compile Include="rozgrywki\core\migrations\__init__.py" />
+    <Compile Include="rozgrywki\core\models.py" />
+    <Compile Include="rozgrywki\core\tests.py" />
+    <Compile Include="rozgrywki\core\tokens.py" />
+    <Compile Include="rozgrywki\core\views.py" />
+    <Compile Include="rozgrywki\core\__init__.py" />
+    <Compile Include="rozgrywki\games\admin.py" />
+    <Compile Include="rozgrywki\games\apps.py" />
+    <Compile Include="rozgrywki\games\forms.py" />
+    <Compile Include="rozgrywki\games\migrations\0001_initial.py" />
+    <Compile Include="rozgrywki\games\migrations\0002_auto_20170428_1033.py" />
+    <Compile Include="rozgrywki\games\migrations\0003_player.py" />
+    <Compile Include="rozgrywki\games\migrations\0004_auto_20170510_1730.py" />
+    <Compile Include="rozgrywki\games\migrations\0005_event_create_user.py" />
+    <Compile Include="rozgrywki\games\migrations\0006_auto_20170524_1829.py" />
+    <Compile Include="rozgrywki\games\migrations\0007_goal_redcard_shots_yellowcard.py" />
+    <Compile Include="rozgrywki\games\migrations\0008_auto_20170531_1308.py" />
+    <Compile Include="rozgrywki\games\migrations\0009_auto_20170531_1543.py" />
+    <Compile Include="rozgrywki\games\migrations\0010_auto_20170531_1555.py" />
+    <Compile Include="rozgrywki\games\migrations\0011_remove_event_type.py" />
+    <Compile Include="rozgrywki\games\migrations\0012_remove_event_count_teams.py" />
+    <Compile Include="rozgrywki\games\migrations\__init__.py" />
+    <Compile Include="rozgrywki\games\models.py" />
+    <Compile Include="rozgrywki\games\tests.py" />
+    <Compile Include="rozgrywki\games\views.py" />
+    <Compile Include="rozgrywki\games\__init__.py" />
+    <Compile Include="rozgrywki\__init__.py" />
+    <Compile Include="rozgrywki\settings.py" />
+    <Compile Include="rozgrywki\urls.py" />
+    <Compile Include="rozgrywki\wsgi.py" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="db.sqlite3" />
+    <Content Include="requirements.txt" />
+    <Content Include="rozgrywki\.idea\inspectionProfiles\profiles_settings.xml" />
+    <Content Include="rozgrywki\.idea\misc.xml" />
+    <Content Include="rozgrywki\.idea\modules.xml" />
+    <Content Include="rozgrywki\.idea\rozgrywki.iml" />
+    <Content Include="rozgrywki\.idea\workspace.xml" />
+    <Content Include="rozgrywki\.vs\ProjectSettings.json" />
+    <Content Include="rozgrywki\.vs\rozgrywki\v15\.suo" />
+    <Content Include="rozgrywki\.vs\slnx.sqlite" />
+    <Content Include="rozgrywki\.vs\VSWorkspaceState.json" />
+    <Content Include="rozgrywki\core\models.pyc" />
+    <Content Include="rozgrywki\core\__init__.pyc" />
+    <Content Include="rozgrywki\core\__pycache__\__init__.cpython-36.pyc" />
+    <Content Include="rozgrywki\games\.models.py.swp" />
+    <Content Include="rozgrywki\games\admin.pyc" />
+    <Content Include="rozgrywki\games\models.pyc" />
+    <Content Include="rozgrywki\games\__init__.pyc" />
+    <Content Include="rozgrywki\games\__pycache__\__init__.cpython-36.pyc" />
+    <Content Include="rozgrywki\settings.pyc" />
+    <Content Include="rozgrywki\templates\account_activation_email.html" />
+    <Content Include="rozgrywki\templates\account_activation_invalid.html" />
+    <Content Include="rozgrywki\templates\account_activation_sent.html" />
+    <Content Include="rozgrywki\templates\base.html" />
+    <Content Include="rozgrywki\templates\create_event.html" />
+    <Content Include="rozgrywki\templates\event_bracket.html" />
+    <Content Include="rozgrywki\templates\event_edit.html" />
+    <Content Include="rozgrywki\templates\event_list.html" />
+    <Content Include="rozgrywki\templates\games\player_detail.html" />
+    <Content Include="rozgrywki\templates\games\team_detail.html" />
+    <Content Include="rozgrywki\templates\games\team_list.html" />
+    <Content Include="rozgrywki\templates\home.html" />
+    <Content Include="rozgrywki\templates\login.html" />
+    <Content Include="rozgrywki\templates\match_details.html" />
+    <Content Include="rozgrywki\templates\match_edit.html" />
+    <Content Include="rozgrywki\templates\my_events.html" />
+    <Content Include="rozgrywki\templates\registration\password_reset_complete.html" />
+    <Content Include="rozgrywki\templates\registration\password_reset_confirm.html" />
+    <Content Include="rozgrywki\templates\registration\password_reset_done.html" />
+    <Content Include="rozgrywki\templates\registration\password_reset_email.html" />
+    <Content Include="rozgrywki\templates\registration\password_reset_form.html" />
+    <Content Include="rozgrywki\templates\registration\password_reset_subject.txt" />
+    <Content Include="rozgrywki\templates\search.html" />
+    <Content Include="rozgrywki\templates\signup.html" />
+    <Content Include="rozgrywki\templates\team_list.html" />
+    <Content Include="rozgrywki\templates\user_list.html" />
+    <Content Include="rozgrywki\__init__.pyc" />
+    <Content Include="rozgrywki\__pycache__\settings.cpython-36.pyc" />
+    <Content Include="rozgrywki\__pycache__\__init__.cpython-36.pyc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="rozgrywki\" />
+    <Folder Include="rozgrywki\.idea\" />
+    <Folder Include="rozgrywki\.idea\inspectionProfiles\" />
+    <Folder Include="rozgrywki\.vs\" />
+    <Folder Include="rozgrywki\.vs\rozgrywki\" />
+    <Folder Include="rozgrywki\.vs\rozgrywki\v15\" />
+    <Folder Include="rozgrywki\core\" />
+    <Folder Include="rozgrywki\core\migrations\" />
+    <Folder Include="rozgrywki\core\__pycache__\" />
+    <Folder Include="rozgrywki\games\" />
+    <Folder Include="rozgrywki\games\migrations\" />
+    <Folder Include="rozgrywki\games\__pycache__\" />
+    <Folder Include="rozgrywki\templates\" />
+    <Folder Include="rozgrywki\templates\games\" />
+    <Folder Include="rozgrywki\templates\registration\" />
+    <Folder Include="rozgrywki\__pycache__\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Interpreter Include="env\">
+      <Id>env</Id>
+      <Version>3.6</Version>
+      <Description>env (Python 3.6 (32-bit))</Description>
+      <InterpreterPath>Scripts\python.exe</InterpreterPath>
+      <WindowsInterpreterPath>Scripts\pythonw.exe</WindowsInterpreterPath>
+      <PathEnvironmentVariable>PYTHONPATH</PathEnvironmentVariable>
+      <Architecture>X86</Architecture>
+    </Interpreter>
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.Django.targets" />
+  <!-- Specify pre- and post-build commands in the BeforeBuild and 
+       AfterBuild targets below. -->
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <AutoAssignPort>True</AutoAssignPort>
+          <UseCustomServer>True</UseCustomServer>
+          <CustomServerUrl>http://localhost</CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}" User="">
+        <WebProjectProperties>
+          <StartPageUrl>
+          </StartPageUrl>
+          <StartAction>CurrentPage</StartAction>
+          <AspNetDebugging>True</AspNetDebugging>
+          <SilverlightDebugging>False</SilverlightDebugging>
+          <NativeDebugging>False</NativeDebugging>
+          <SQLDebugging>False</SQLDebugging>
+          <ExternalProgram>
+          </ExternalProgram>
+          <StartExternalURL>
+          </StartExternalURL>
+          <StartCmdLineArguments>
+          </StartCmdLineArguments>
+          <StartWorkingDirectory>
+          </StartWorkingDirectory>
+          <EnableENC>False</EnableENC>
+          <AlwaysStartWebServerOnDebug>False</AlwaysStartWebServerOnDebug>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>

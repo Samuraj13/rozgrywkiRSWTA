@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block content %}
+<div class="container">
+    <form method="POST" name="event">{% csrf_token %}
+    {% csrf_token %}
+    {% for field in form %}
+        <p>
+        {{ field.label_tag }}<br>
+        {{ field }}<br>
+        {% for error in field.errors %}
+            <p style="color: red">{{ error }}</p>
+    {% endfor %}
+    {% if field.help_text %}
+      <p><small style="color: grey">{{ field.help_text }}</small></p>
+    {% endif %}
+        </p>
+    {% endfor %}
+    <button type="submit">Utwórz</button>
+    </form>
+</div>
+{% endblock %}

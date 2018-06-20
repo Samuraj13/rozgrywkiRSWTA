@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="container">
+        <h1 align="center">{{ team.team_name }}</h1>
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                    <tr>
+                        <th>Nr</th>
+                        <th>Imie</th>
+                        <th>Nazwisko</th>
+                        <th>Akcje</th>
+                    </tr>
+                    </thead>
+                    {% for player in team.player_set.all %}
+                        <tbody>
+                        <tr>
+                            <td class="col-md-1">{{ forloop.counter }}</td>
+                            <td class="col-md-5">{{ player.player_name }}</td>
+                            <td class="col-md-3">{{ player.player_surname }}</td>
+                            <td class="col-md-5">
+                                <a href="{% url 'player-details' team.id player.id %}" class="btn btn-info"
+                                   role="button" style="float: left; margin-right: 4px">Informacje</a>
+                                {% if user.is_authenticated %}
+                                <form id="{{ player.id }}" method="post" style="float: left">{% csrf_token %}
+                                    {% csrf_token %}
+                                    <input type="hidden" name="player_name" value="{{ player.player_name }}">
+                                    <input type="hidden" name="player_surname" value="{{ player.player_surname }}">
+                                    <input type="submit" class=" btn btn-danger"
+                                           onclick="document.getElementById('{{ player.id }}').action='{% url 'remove-player' object.id %}'"
+                                           value="Usuń"/>
+                                </form>
+                                {% endif %}
+                            </td>
+                        </tr>
+                        </tbody>
+                    {% endfor %}
+                </table>
+            </div>
+            {% if user.is_authenticated %}
+            <br><h3>Dodaj zawodnika</h3>
+            <form id="form" method="post">{% csrf_token %}
+                <label>Name</label>
+                <input type="text" name="player_name">
+
+                <label>Surname</label>
+                <input type="text" name="player_surname">
+
+                <input type="submit" class="btn btn-success" onclick="document.getElementById('form').action='{% url 'add-player' object.id %}'"
+                       value="Dodaj"/>
+            </form>
+            {% endif %}
+    </div>
+{% endblock %}

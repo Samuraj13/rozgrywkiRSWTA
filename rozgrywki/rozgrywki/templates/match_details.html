@@ -1,0 +1,114 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block content %}
+    <div class="container">
+    <div class="table-responsive" style="text-align: center">
+        <table class="table table-bordered">
+            <thead>
+            {% for teamscore in teamscores %}
+                <tr>
+                <th align="center">{{ teamscore.team_one }}</th>
+                <th align="center">{{ teamscore.team_two }}</th>
+            </tr>
+                </thead>
+                <h1 align="center">{{ teamscore.event.name }}</h1><br>
+                {% if teamscore.is_complete == False %}
+                    <h2 align="center">{{ teamscore.team_one }}  <span style="color: #FB4248">{{ teamscore.team_one.score }}-{{ teamscore.team_two.score }}</span> {{ teamscore.team_two }}</h2>
+                    <h4 align="center" style="color: #FB4248">Aktywny</h4>
+                {% else %}
+                    <h2 align="center">{{ teamscore.team_one }}<span style="color: forestgreen">{{ teamscore.team_one.score }}-{{ teamscore.team_two.score }}</span> {{ teamscore.team_two }}</h2>
+                    <h4 align="center" style="color: forestgreen">Zakończony</h4>
+                {% endif %}
+                <tbody>
+            <tr>
+                <td class="col-md-3">
+                     <table class="table table-bordered">
+                         <thead>
+                            <tr>
+                                <th align="center">Imie</th>
+                                <th align="center">Nazwisko</th>
+                                <th align="center">Akcja</th>
+                            </tr>
+                         </thead>
+                         {% for player in teamscore.team_one.team.player_set.all %}
+                         <tbody>
+                            <tr>
+                                <td><a href="{% url 'player-details' player.team_name.id player.id %}">{{ player.player_name }}</a></td>
+                                <td><a href="{% url 'player-details' player.team_name.id player.id %}">{{ player.player_surname }}</a></td>
+                                <td>
+                                    {% for gol in gole %}
+                                    {% if gol.player.id == player.id %}
+                                    Strzelił gola w {{ gol.time }} minucie!<br>
+                                    {% endif %}
+                                    {% endfor %}
+                                    {% for strzal in strzaly %}
+                                    {% if strzal.player.id == player.id %}
+                                    Oddał strzał w {{ strzal.time }} minucie.<br>
+                                    {% endif %}
+                                    {% endfor %}
+                                    {% for zoltakartka in zoltekartki %}
+                                    {% if zoltakartka.player.id == player.id %}
+                                    Dostał żółtą kartkę w {{ zoltakartka.time }} minucie.<br>
+                                    {% endif %}
+                                    {% endfor %}
+                                    {% for czerwonakartka in czerwonekartki %}
+                                    {% if czerwonakartka.player.id == player.id %}
+                                    Dostał czerwoną kartkę w {{ czerwonakartka.time }} minucie!<br>
+                                    {% endif %}
+                                    {% endfor %}
+                                </td>
+                            </tr>
+                         </tbody>
+                         {% endfor %}
+                     </table>
+                </td>
+
+                <td class="col-md-3">
+                    <table class="table table-bordered">
+                         <thead>
+                            <tr>
+                                <th align="center">Imie</th>
+                                <th align="center">Nazwisko</th>
+                                <th align="center">Akcja</th>
+                            </tr>
+                         </thead>
+                        {% for player in teamscore.team_two.team.player_set.all %}
+                         <tbody>
+                            <tr>
+                                <td>{{ player.player_name }}</td>
+                                <td>{{ player.player_surname }}</td>
+                                <td>
+                                    {% for gol in gole %}
+                                    {% if gol.player.id == player.id %}
+                                    Strzelił gola w {{ gol.time }} minucie!<br>
+                                    {% endif %}
+                                    {% endfor %}
+                                    {% for strzal in strzaly %}
+                                    {% if strzal.player.id == player.id %}
+                                    Oddał strzał w {{ strzal.time }} minucie.<br>
+                                    {% endif %}
+                                    {% endfor %}
+                                    {% for zoltakartka in zoltekartki %}
+                                    {% if zoltakartka.player.id == player.id %}
+                                    Dostał żółtą kartkę w {{ zoltakartka.time }} minucie.<br>
+                                    {% endif %}
+                                    {% endfor %}
+                                    {% for czerwonakartka in czerwonekartki %}
+                                    {% if czerwonakartka.player.id == player.id %}
+                                    Dostał czerwoną kartkę w {{ czerwonakartka.time }} minucie!<br>
+                                    {% endif %}
+                                    {% endfor %}
+                                </td>
+                            </tr>
+                         </tbody>
+                        {% endfor %}
+                     </table>
+                </td>
+            </tr>
+            </tbody>
+            {% endfor %}
+        </table>
+    </div>
+    </div>
+{% endblock %}

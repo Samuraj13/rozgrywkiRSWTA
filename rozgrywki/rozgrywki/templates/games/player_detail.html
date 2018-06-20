@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+     <div class="view-list">
+         {% for player in players %}
+         <h1>{{ player.player_name }} {{ player.player_surname }}</h1>
+         <h3>Drużyna: {{ team.team_name }} </h3>
+             {% for gol in gole %}
+                 {% if gol.id == player.id %}
+         <h3>Bramki: {{ gol.goals }} </h3>
+                 {% endif %}
+             {%  endfor %}
+             {% for strzal in strzaly %}
+                 {% if strzal.id == player.id %}
+                    <h3>Strzały: {{ strzal.shots }} </h3>
+                 {% endif %}
+             {%  endfor %}
+             {% for zoltakartka in zoltekartki %}
+                 {% if zoltakartka.id == player.id %}
+                     <h3>Żółte Kartki: {{ zoltakartka.yellowcards }} </h3>
+                 {% endif %}
+             {%  endfor %}
+             {% for czerwonakartka in czerwonekartki %}
+                 {% if czerwonakartka.id == player.id %}
+                     <h3>Czerwone Kartki: {{ czerwonakartka.redcards }} </h3>
+                 {% endif %}
+             {%  endfor %}
+         {% endfor %}
+     </div>
+</div>
+{% endblock %}

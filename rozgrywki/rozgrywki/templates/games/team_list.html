@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block content %}
+    <div class="container">
+        {% if user.is_authenticated %}
+            <h3>Lista drużyn użytkownika {{ user.username }}</h3>
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                    <tr>
+                        <th>Nr</th>
+                        <th>Drużyna</th>
+                        <th>Skrót</th>
+                        <th>Akcje</th>
+                    </tr>
+                    </thead>
+                    {% for team in teams %}
+                        <tbody>
+                        <tr>
+                            <td class="col-md-1">{{ forloop.counter }}</td>
+                            <td class="col-md-5">{{ team.team_name }}</td>
+                            <td class="col-md-3">{{ team.short_name }}</td>
+                            <td class="col-md-5">
+                                <a href="{% url 'team-details' team.id %}" class="btn btn-warning"
+                                   role="button" style="float: left; margin-right: 4px">Edytuj</a>
+                                <form id="{{ team.team_name }}" method="post" style="float: left">{% csrf_token %}
+                                  {% csrf_token %}
+                                  <input type="hidden" name="team_name" value="{{ team.team_name }}">
+                                    <input type="submit" class=" btn btn-danger" onclick="document.getElementById('{{ team.team_name }}').action='{% url 'remove-team' %}'"
+                                           value="Usuń"/>
+                                </form>
+                            </td>
+                        </tr>
+                        </tbody>
+                    {% endfor %}
+                </table>
+            </div>
+            <br><h3>Dodaj drużynę</h3>
+            <form id="form" method="POST" name="add-team">{% csrf_token %}
+                <label>Nazwa drużyny: </label>
+                <input type="text" name="team_name">
+
+                <label>Skrót: </label>
+                <input type="text" name="short_name">
+
+                <input type="submit" class="btn btn-success" onclick="document.getElementById('form').action='{% url 'add-team' %}'"
+                       value="Dodaj"/>
+            </form>
+        {% endif %}
+    </div>
+{% endblock %}

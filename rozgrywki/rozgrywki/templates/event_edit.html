@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block content %}
+<div class="container">
+    <h1 align="center">{{ event.name }}</h1><br>
+    <div class="table-responsive" style="text-align: center">
+        <table class="table table-bordered">
+            <thead>
+            <tr>
+                <th align="center">Nr</th>
+                <th align="center">Drużyna 1</th>
+                <th align="center">Wynik</th>
+                <th align="center">Drużyna 2</th>
+                <th align="center">Akcje</th>
+            </tr>
+            </thead>
+            {% for teamscore in teamscores %}
+            <tbody>
+            <tr>
+                <td class="col-md-1">{{ forloop.counter }}</td>
+                <td class="col-md-3"><a href="{% url 'team-details' teamscore.team_one.team.id %}">{{teamscore.team_one}}</a>
+                </td>
+                <td class="col-md-1">{{ teamscore.team_one.score }} - {{ teamscore.team_two.score }}
+                </td>
+                <td class="col-md-3"><a href="{% url 'team-details' teamscore.team_two.team.id %}">{{ teamscore.team_two}}</a></td>
+                 <td class="col-md-3"><a href="{% url 'match-details' pk=teamscore.id %}" class="btn btn-info"
+                               role="button">Informacje</a>
+                     <a href="{% url 'match-edit' pk=teamscore.id %}" class="btn btn-warning" role="button">Edytuj</a></td>
+            </tr>
+
+            </tbody>
+            {% endfor %}
+        </table>
+    </div>
+</div>
+{% endblock %}

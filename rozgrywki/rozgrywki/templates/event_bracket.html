@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block content %}
+<div class="container">
+        <h1 align="center">{{ event.name }}</h1><br>
+          <table class="table table-bordered" >
+            <thead>
+              <tr>
+                <th align="center">Nr</th>
+                <th align="center">Drużyna 1</th>
+                <th align="center">Wynik</th>
+                <th align="center">Drużyna 2</th>
+                  <th align="center">Akcje</th>
+              </tr>
+            </thead>
+                  {% for team in teams %}
+            <tbody>
+              <tr>
+                <td class="col-md-1">{{ forloop.counter }}</td>
+                      <td class="col-md-4"><a href="{% url 'team-details' team.team_one.team.id %}">{{team.team_one}}</a></td>
+                <td class="col-md-1">{{ team.team_one.score }} - {{ team.team_two.score }}</td>
+                      <td class="col-md-5"><a href="{% url 'team-details' team.team_two.team.id %}">{{ team.team_two }}</a></td>
+                  <td class="col-md-3"><a href="{% url 'match-details' pk=team.id %}" class="btn btn-info"
+                               role="button">Informacje</a>
+
+              </tr>
+            </tbody>
+                  {% endfor %}
+          </table>
+
+</div>
+<div class="col-lg-3" style="margin-top: 10px">
+                <h3>Statystyki drużyn</h3>
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>Nr</th>
+                        <th>Nazwa</th>
+                        <th>Gole</th>
+                    </tr>
+                    </thead>
+                    {% for gol in gole %}
+                        <tbody>
+                        <tr>
+                            <td>{{ forloop.counter }}</td>
+                            <td>{{ gol.team_name }}</td>
+                            <td>{{ gol.ilosc }}</td>
+                        </tr>
+                        </tbody>
+                    {% endfor %}
+                </table>
+            </div>
+{% endblock %}

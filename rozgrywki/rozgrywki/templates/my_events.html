@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block content %}
+    <div class="container">
+        <h3>Lista rozgrywek użytkownika {{ user.username }}</h3>
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <th>Nr</th>
+                    <th>Rozgrywka</th>
+                    <th>Akcje</th>
+                </tr>
+                </thead>
+                {% for event in events %}
+                    <tbody>
+                    <tr>
+                        <td class="col-md-1">{{ forloop.counter }}</td>
+                        <td class="col-md-8">{{ event.name }}</td>
+                        <td class="col-md-3">
+                            <a href="{% url 'bracket' pk=event.id %}" class="btn btn-info"
+                               role="button" style="float: left; margin-right: 4px">Informacje</a>
+                            <a href="{% url 'bracket-edit' pk=event.id %}" class="btn btn-warning" role="button" style="float: left; margin-right: 4px">Edytuj</a>
+                            <form id="{{ event.name }}" method="post" style="float: left">{% csrf_token %}
+                                {% csrf_token %}
+                                <input type="hidden" name="event_name" value="{{ event.name }}">
+                                <input type="submit" class=" btn btn-danger"
+                                       onclick="document.getElementById('{{ event.name}}').action='{% url 'remove-event' %}'"
+                                       value="Usuń"/>
+                            </form>
+                        </td>
+                    </tr>
+                    </tbody>
+                {% endfor %}
+            </table>
+        </div>
+        <br>
+        <h3>Stwórz rozgrywkę</h3>
+        <form method="POST" name="event">{% csrf_token %}
+            {% csrf_token %}
+            {% for field in form %}
+                <p>
+                    {{ field.label_tag }}<br>
+                    {{ field }}<br>
+                    {% for error in field.errors %}
+                        <p style="color: red">{{ error }}</p>
+                    {% endfor %}
+                {% if field.help_text %}
+                    <p>
+                        <small style="color: grey">{{ field.help_text }}</small>
+                    </p>
+                {% endif %}
+                </p>
+            {% endfor %}
+            <button type="submit" class="btn btn-success">Utwórz</button>
+        </form>
+    </div>
+
+{% endblock %}

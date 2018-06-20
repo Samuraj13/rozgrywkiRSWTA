@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block content %}
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-8">
+                <h3>Lista rozgrywek</h3>
+                {% for event in events %}
+                    <div class="col-md-3 col-sm-4 col-xs-6">
+                        <div class="dummy"></div>
+                        <a href="{% url 'bracket' pk=event.id %}" class="thumbnail purple">{{ event.name }}<p
+                                style="font-size: 15px">Organizator: {{ event.create_user }}</p></a>
+                    </div>
+                {% endfor %}
+            </div>
+            <div class="col-lg-3">
+                <h3>Najlepsi strzelcy</h3>
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>Nr</th>
+                        <th>Imie</th>
+                        <th>Nazwisko</th>
+                        <th>Drużyna</th>
+                        <th>Gole</th>
+                    </tr>
+                    </thead>
+                    {% for player in players %}
+                        <tbody>
+                        <tr>
+                            <td>{{ forloop.counter }}</td>
+                            <td>{{ player.player_name }}</td>
+                            <td>{{ player.player_surname }}</td>
+                            <td>{{ player.team_name }}</td>
+                            <td>{{ player.gole }}</td>
+                        </tr>
+                        </tbody>
+                    {% endfor %}
+                </table>
+            </div>
+            <div class="col-lg-3" style="margin-top: 10px">
+                <h3>Statystyki drużyn</h3>
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>Nr</th>
+                        <th>Nazwa</th>
+                        <th>Gole</th>
+                    </tr>
+                    </thead>
+                    {% for gol in gole %}
+                        <tbody>
+                        <tr>
+                            <td>{{ forloop.counter }}</td>
+                            <td>{{ gol.team_name }}</td>
+                            <td>{{ gol.ilosc }}</td>
+                        </tr>
+                        </tbody>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+
+    </div>
+{% endblock %}

@@ -1,0 +1,4 @@
+Django==1.11.13
+pip==9.0.1
+pytz==2018.4
+setuptools==28.8.0

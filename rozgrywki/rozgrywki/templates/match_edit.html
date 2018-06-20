@@ -1,0 +1,175 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block content %}
+    <div class="container">
+        {% for teamscore in teamscores %}
+            <h1 align="center">{{ teamscore.event.name }}</h1><br>
+            {% if teamscore.is_complete == False %}
+                <h2 align="center">{{ teamscore.team_one }} <span
+                        style="color: #FB4248">{{ teamscore.team_one.score }}-{{ teamscore.team_two.score }}</span> {{ teamscore.team_two }}
+                </h2>
+                <h4 align="center" style="color: #FB4248">W trakcie</h4>
+            {% else %}
+                <h2 align="center">{{ teamscore.team_one }} <span
+                        style="color: forestgreen">{{ teamscore.team_one.score }}-{{ teamscore.team_two.score }}</span> {{ teamscore.team_two }}
+                </h2>
+                <h4 align="center" style="color: forestgreen">Zakończony</h4>
+            {% endif %}
+            <h3>{{ teamscore.team_one }}</h3>
+            <div class="table-responsive" style="text-align: center">
+                <table class="table table-bordered">
+                    <thead>
+                    <tr>
+                        <th align="center">Imie</th>
+                        <th align="center">Nazwisko</th>
+                        <th align="center">Gole</th>
+                        <th align="center">Strzały</th>
+                        <th align="center">Żółte kartki</th>
+                        <th align="center">Czerwone kartki</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for player in players %}
+                        {% if player.team_name == teamscore.team_one.team %}
+                        <tr>
+                            <td>{{ player.player_name }}</td>
+                            <td>{{ player.player_surname }}</td>
+                            {% for gol in gole %}
+                                {% if gol.id == player.id %}
+                                    <td>{{ gol.goals }}</td>
+                                {% endif %}
+                            {%  endfor %}
+                            {% for strzal in strzaly %}
+                                {% if strzal.id == player.id %}
+                                    <td>{{ strzal.shots }}</td>
+                                {% endif %}
+                            {%  endfor %}
+                            {% for zoltakartka in zoltekartki %}
+                                {% if zoltakartka.id == player.id %}
+                                    <td>{{ zoltakartka.yellowcards }}</td>
+                                {% endif %}
+                            {%  endfor %}
+                            {% for czerwonakartka in czerwonekartki %}
+                                {% if czerwonakartka.id == player.id %}
+                                    <td>{{ czerwonakartka.redcards }}</td>
+                                {% endif %}
+                            {%  endfor %}
+                        </tr>
+                        {% endif %}
+                    {% endfor %}
+                    </tbody>
+                </table>
+                 {% if teamscore.is_complete == False %}
+                <form id="edit1" method="post">{% csrf_token %}
+                    {% csrf_token %}
+                    <label for="player">Wybierz zawodnika:</label>
+                    <select class="form-control" name="player">
+                        {% for player in teamscore.team_one.team.player_set.all %}
+                            <option>{{ player.player_name }} {{ player.player_surname }}</option>
+                        {% endfor %}
+                    </select>
+                    <input type="hidden" name="match_id" value="{{ teamscore.id }}">
+                    <label for="time">Minuta:</label>
+                    <input type="text" name="time" class="form-control" value="0"><br>
+                    <input type="submit" class=" btn btn-success"
+                           onclick="document.getElementById('edit1').action='{% url 'add-goal' teamscore.id %}'"
+                           value="GOL!"/>
+                    <input type="submit" class=" btn btn-info"
+                           onclick="document.getElementById('edit1').action='{% url 'add-shot' teamscore.id %}'"
+                           value="Strzał"/>
+                    <input type="submit" class=" btn btn-warning"
+                           onclick="document.getElementById('edit1').action='{% url 'add-yellowcard' teamscore.id %}'"
+                           value="Żółta kartka"/>
+                    <input type="submit" class=" btn btn-danger"
+                           onclick="document.getElementById('edit1').action='{% url 'add-redcard' teamscore.id %}'"
+                           value="Czerwona kartka"/>
+                </form>
+            {% endif %}
+            </div>
+
+            <br><br><h3>{{ teamscore.team_two }}</h3>
+            <div class="table-responsive" style="text-align: center">
+                <table class="table table-bordered">
+                    <thead>
+                    <tr>
+                        <th align="center">Imie</th>
+                        <th align="center">Nazwisko</th>
+                        <th align="center">Gole</th>
+                        <th align="center">Strzały</th>
+                        <th align="center">Żółte kartki</th>
+                        <th align="center">Czerwone kartki</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for player in players %}
+                        {% if player.team_name == teamscore.team_two.team %}
+                        <tr>
+                            <td>{{ player.player_name }}</td>
+                            <td>{{ player.player_surname }}</td>
+                            {% for gol in gole %}
+                                {% if gol.id == player.id %}
+                                    <td>{{ gol.goals }}</td>
+                                {% endif %}
+                            {%  endfor %}
+                            {% for strzal in strzaly %}
+                                {% if strzal.id == player.id %}
+                                    <td>{{ strzal.shots }}</td>
+                                {% endif %}
+                            {%  endfor %}
+                            {% for zoltakartka in zoltekartki %}
+                                {% if zoltakartka.id == player.id %}
+                                    <td>{{ zoltakartka.yellowcards }}</td>
+                                {% endif %}
+                            {%  endfor %}
+                            {% for czerwonakartka in czerwonekartki %}
+                                {% if czerwonakartka.id == player.id %}
+                                    <td>{{ czerwonakartka.redcards }}</td>
+                                {% endif %}
+                            {%  endfor %}
+                        </tr>
+                        {% endif %}
+                    {% endfor %}
+                    </tbody>
+                </table>
+                {% if teamscore.is_complete == False %}
+                <form id="edit2" method="post">{% csrf_token %}
+                    {% csrf_token %}
+                    <label for="player">Wybierz zawodnika:</label>
+                    <select class="form-control" name="player">
+                        {% for player in teamscore.team_two.team.player_set.all %}
+                            <option>{{ player.player_name }} {{ player.player_surname }}</option>
+                        {% endfor %}
+                    </select>
+                    <input type="hidden" name="match_id" value="{{ teamscore.id }}">
+                    <label for="time">Minuta:</label>
+                    <input type="text" name="time" class="form-control" value="0"><br>
+                    <input type="submit" class=" btn btn-success"
+                           onclick="document.getElementById('edit2').action='{% url 'add-goal' teamscore.id %}'"
+                           value="GOL!"/>
+                    <input type="submit" class=" btn btn-info"
+                           onclick="document.getElementById('edit2').action='{% url 'add-shot' teamscore.id %}'"
+                           value="Strzał"/>
+                    <input type="submit" class=" btn btn-warning"
+                           onclick="document.getElementById('edit2').action='{% url 'add-yellowcard' teamscore.id %}'"
+                           value="Żółta kartka"/>
+                    <input type="submit" class=" btn btn-danger"
+                           onclick="document.getElementById('edit2').action='{% url 'add-redcard' teamscore.id %}'"
+                           value="Czerwona kartka"/>
+                </form>
+            {% endif %}
+            </div>
+        {% if teamscore.is_complete == False %}
+        <br><br>
+        <p align="center">
+            <a href="{% url 'match-end' teamscore.id %}" class="btn btn-primary" role="button">Zakończ mecz</a>
+        </p>
+        {% else %}
+        <br><br>
+        <p align="center">
+            <a href="{% url 'match-resume' teamscore.id %}" class="btn btn-primary" role="button">Wznów mecz</a>
+        </p>
+    {% endif %}
+    {% endfor %}
+    </div>
+{% endblock %}
